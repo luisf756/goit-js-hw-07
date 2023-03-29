@@ -1,5 +1,5 @@
 import { galleryItems } from './gallery-items.js';
-import * as basicLightbox from 'basiclightbox'
+// import * as basicLightbox from 'basiclightbox'
 
 // Change code below this line
 
@@ -20,15 +20,23 @@ function createGalleryItem(element){
             </a>
         </div>`
     })
-    .join('')
-    
+    .join('');
 }
+
+const galleryHandler =(event)=>{
+    event.preventDefault();
+
+    if(event.target.nodeName !== 'IMG'){
+        return;
+    };
+    const originalUrl= event.target.src;
+    console.log(event.target)
+    const instance =basicLightbox.create(`<img width="1400" height="900" src="${originalUrl}">`)
+    instance.show();
+}
+
 containerGAllery.insertAdjacentHTML('beforeend',photosMark);
-containerGAllery.onclick = () => {
-	basicLightbox.create(`
-		<img width="1400" height="900" src="${galleryItems.original}">
-	`).show()
-}
+containerGAllery.addEventListener('click', galleryHandler);
 
 
 // const instance = basicLightbox.create(`
@@ -41,4 +49,4 @@ containerGAllery.onclick = () => {
 // 	basicLightbox.create(`
 // 		<img width="1400" height="900" src="${preview}">//funciona con una url
 // 	`).show()
-// }
+// };
