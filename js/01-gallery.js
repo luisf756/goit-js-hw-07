@@ -33,7 +33,17 @@ const galleryHandler =(event)=>{
     console.log(event.target)
     const instance =basicLightbox.create(`<img width="1400" height="900" src="${originalUrl}">`)
     instance.show();
-}
+
+    window.addEventListener('keydown', onEscKeyPress);
+
+    function onEscKeyPress(event){
+        const ESC_KEY_CODE='Escape'
+        if (event.code === ESC_KEY_CODE) {
+            instance.close();
+            window.removeEventListener('keydown', onEscKeyPress);
+        };
+    };
+};
 
 containerGAllery.insertAdjacentHTML('beforeend',photosMark);
 containerGAllery.addEventListener('click', galleryHandler);

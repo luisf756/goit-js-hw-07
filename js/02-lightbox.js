@@ -21,13 +21,14 @@ function createGalleryItem(element){
 
 
 containerGAllery.insertAdjacentHTML('beforeend',photosMark);
-//containerGAllery.addEventListener('click',(event)=>event.preventDefault());
+containerGAllery.addEventListener('click', (event)=>event.preventDefault());
+
 // let lightbox = new SimpleLightbox('.gallery a'); //para utilizar la galeria
  const galleryHandler = new SimpleLightbox('.gallery a', {
     captionsData:'alt',
      captionDelay:250
     });
-galleryHandler.on('show.simplelightbox', function (e) {
-   let img=e.target.childNodes
-   img[1].alt =img[1].alt + ': comentario'; 
-});
+// galleryHandler.on('show.simplelightbox', function (e) {
+//    let img=e.target.childNodes
+//    img[1].alt =img[1].alt + ': comentario'; 
+// });
